@@ -35,7 +35,8 @@ float totalDistanceRan()
   return totalRotations * ROTATION_LENGTH;
 }
 
-float toKmPerHour(float metersPerSecond) {
+float toKmPerHour(float metersPerSecond)
+{
   return metersPerSecond * 3.6F;
 }
 
@@ -64,7 +65,7 @@ String processor(const String &var)
   }
   else if (var == "CURRENT_SPEED")
   {
-    return String(topSpeed);
+    return String(currentSpeed);
   }
   else if (var == "TOP_SPEED_KM")
   {
@@ -72,7 +73,7 @@ String processor(const String &var)
   }
   else if (var == "CURRENT_SPEED_KM")
   {
-    return String(toKmPerHour(topSpeed));
+    return String(toKmPerHour(currentSpeed));
   }
   return String();
 }
