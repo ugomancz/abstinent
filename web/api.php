@@ -30,7 +30,7 @@ function save_new_data(){
     // Todo: check auth token
     // Todo: save into CSV
     file_put_contents('current_data.json', $_POST);
-    echo '{"currentData:"'.file_get_contents('file.txt').'}';
+    echo '{"currentData":'.file_get_contents('file.txt').'}';
     http_response_code(201);
 }
 
