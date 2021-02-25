@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 function save_new_data(){
+    $post_json = file_get_contents('php://input');
     // Todo: check auth token
     // Todo: save into CSV
-    file_put_contents('current_data.json', $_POST);
-    echo '{"currentData:"'.file_get_contents('file.txt').'}';
+    file_put_contents('current_data.json', $post_json );
     http_response_code(201);
 }
 
