@@ -1,44 +1,45 @@
 <?php 
-$GITLAB_TOKEN = "0183c450e36331faa7cfd704006e0f34";
-$ROTATION_LENGTH 0.39269908;
+$GITLAB_API_KEY= "0183c450e36331faa7cfd704006e0f34";
+$ABSTINENT_API_KEY = "0183c450e36331faa7cfd704006e0f34";
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
-        if ($_SERVER['X_GITLAB_TOKEN'] == $GITLAB_TOKEN){
+        if ($_SERVER['X_GITLAB_TOKEN'] == $GITLAB_API_KEY){
             update_from_git();
         } else {
             http_response_code(401);
         }
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-    save_new_data();
-    /*
+
     if (isset($_GET["api_key"])) {
-        if ($_GET["api_key"] != "change-it-later-to-equals") {
+        if ($_GET["apiKey"] == $ABSTINENT_API_KEY) {
             save_new_data();
         } else {
             http_response_code(401);
         }
-    }*/
+    }
 } 
 
 function save_new_data(){
-    $previous_data = json_decode(file_get_contents('current_data.json'));
+    $ROTATION_LENGTH = 0.39269908;
+    $previous_data = json_decode(file_get_contents('current_data.json'), true);
 
     $new_rotations = $_GET["newRotations"];
     $time_diff = isset($_GET["ms"]) ? $_GET["ms"] : 2000;
     $current_speed = $new_rotations / ($time_diff / 1000) * $ROTATION_LENGTH;
-    $current_data = array(
-        "totalRotations" => $previous_data["totalRotations"] + $new_rotations;
-        "totalDistance" => $previous_data["totalDistance"]+($new_data * $ROTATION_LENGTH),
-        "currentSpeed" => $current_speed ,
-        "currentSpeedKm" => $current_speed * 3.6,
+    $current_data = array(        
+	"totalRotations" => $previous_data["totalRotations"] + $new_rotations,
+        "totalDistance" => floor($previous_data["totalDistance"]+($new_rotations * $ROTATION_LENGTH)),
+        "currentSpeed" => round($current_speed, 2),
+        "currentSpeedKm" => round($current_speed * 3.6, 2),
         "currentTimestamp" => time(),
     );
-    if ($previous_data["topSpeed"] < $current_data["currentSpeed"]) {
-        $current_data["topSpeed"] = $current_speed;
-        $current_data["topSpeedKm"] = $current_speed * 3.6;
-    }
+
+    $current_data["topSpeed"] = $previous_data["topSpeed"] < $current_data["currentSpeed"] ? $current_data["currentSpeed"] : $previous_data["topSpeed"];
+    $current_data["topSpeedKm"] = $current_data["topSpeed"] * 3.6;    
+
     file_put_contents('current_data.json', json_encode($current_data));
     // Todo: save into CSV for logging
     http_response_code(201);
