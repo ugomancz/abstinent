@@ -5,7 +5,7 @@ $ABSTINENT_API_KEY = "aac69111be3000c6f7608a1924b6f460";
 // just auto update test
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
-        if ($_SERVER['X_GITLAB_TOKEN'] == $GITLAB_API_KEY){
+        if ($_SERVER['HTTP_X_GITLAB_TOKEN'] == $GITLAB_API_KEY){
             update_from_git();
         } else {
             http_response_code(401);
