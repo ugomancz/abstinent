@@ -27,6 +27,7 @@ void performUpdate()
     if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" + String(newRotations) + "&ms=" + String(millis())).c_str()))
     {
       request.send();
+      newRotations = 0;
 #ifdef DEBUG
       Serial.println("request sent");
 #endif //DEBUG
