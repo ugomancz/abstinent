@@ -11,7 +11,7 @@ $SENSOR_TOKEN = "";
         "currentSpeedKm": 18
 }
 */
-
+// test auto update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
         update_from_git();
