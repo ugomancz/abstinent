@@ -2,6 +2,7 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <Ticker.h>
+#include <WiFiClientSecureBearSSL.h>
 #include "config.h"
 
 #define DETECTED 0
@@ -10,6 +11,7 @@
 Ticker ticker;
 unsigned short newRotations = 0;
 unsigned short previousSensorValue = NOT_DETECTED;
+bool sendPost = false;
 
 // returns true on rising edge
 bool signal_detected(int sensor_pin)
@@ -22,20 +24,7 @@ bool signal_detected(int sensor_pin)
 
 void performUpdate()
 {
-  if (newRotations > 0 and WiFi.isConnected())
-  {
-    WiFiClient client;
-    HTTPClient http;
-    http.begin(client, SERVER_NAME);
-    http.addHeader("Content-Type", "application/json");
-    int httpResponseCode = http.POST("{\"api_key\":\"aac69111be3000c6f7608a1924b6f460\",\
-    \"newRotations\":\"" + String(newRotations) +
-                                     "\"}");
-    Serial.print("HTTP Response code: ");
-    Serial.println(httpResponseCode);
-    http.end();
-    newRotations = 0;
-  }
+  sendPost = true;
 }
 
 void setup()
@@ -61,4 +50,39 @@ void loop()
   {
     newRotations++;
   }
+  if (sendPost /*and newRotations > 0*/)
+  {
+    std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);
+
+    client->setFingerprint(SERVER_FOOTPRINT);
+
+    HTTPClient https;
+
+    Serial.print("[HTTPS] begin...\n");
+    if (https.begin(*client, "https://abstinent.fun/api.php")) {  // HTTPS
+
+      Serial.print("[HTTPS] GET...\n");
+      // start connection and send HTTP header
+      int httpCode = https.POST("{\"apiKey\":\"" + String(API_KEY) + "\",\"newRotations\":\"" + String(newRotations) + "\"}");
+
+      // httpCode will be negative on error
+      if (httpCode > 0) {
+        // HTTP header has been send and Server response header has been handled
+        Serial.printf("[HTTPS] GET... code: %d\n", httpCode);
+
+        // file found at server
+        if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
+          String payload = https.getString();
+          Serial.println(payload);
+        }
+      } else {
+        Serial.printf("[HTTPS] GET... failed, error: %s\n", https.errorToString(httpCode).c_str());
+      }
+
+      https.end();
+    } else {
+      Serial.printf("[HTTPS] Unable to connect\n");
+    }
+  }
+  sendPost = false;
 }
