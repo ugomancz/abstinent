@@ -10,6 +10,7 @@ Ticker ticker;
 asyncHTTPrequest request;
 unsigned short newRotations = 0;
 unsigned short previousSensorValue = NOT_DETECTED;
+bool firstZero = false;
 
 // returns true on rising edge
 bool signal_detected(int sensor_pin)
@@ -22,11 +23,13 @@ bool signal_detected(int sensor_pin)
 
 void performUpdate()
 {
-  if (newRotations > 0 and (request.readyState() == 0 || request.readyState() == 4))
-  {
-    if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" + String(newRotations) + "&ms=" + String(millis())).c_str()))
-    {
+  if ((firstZero or newRotations > 0) and (request.readyState() == 0 || request.readyState() == 4)) {
+#ifdef DEBUG
+Serial.println(("request ready - new rotations: " + String(newRotations)).c_str());
+#endif //DEBUG
+    if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" + String(newRotations)).c_str())) {
       request.send();
+      firstZero = (newRotations == 0) ? false : true;
       newRotations = 0;
 #ifdef DEBUG
       Serial.println("request sent");
