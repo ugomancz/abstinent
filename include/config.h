@@ -8,5 +8,6 @@
 #define API_KEY "aac69111be3000c6f7608a1924b6f460"
 #define SENSOR 4
 #define SPEED_MEASUREMENT_PERIOD 2
+// #define DEBUG
 
 #endif // CONFIG_H
