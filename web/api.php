@@ -13,6 +13,8 @@ $SENSOR_TOKEN = "";
 */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print_r($_POST);
+    print_r($_SERVER);
     if (isset($_SERVER['X_GITLAB_TOKEN'])){
         update_from_git();
     } else {
