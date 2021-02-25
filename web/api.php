@@ -30,7 +30,7 @@ function save_new_data(){
     $time_diff = isset($_GET["ms"]) ? $_GET["ms"] : 2000;
     $current_speed = $new_rotations / ($time_diff / 1000) * $ROTATION_LENGTH;
     $current_data = array(        
-	"totalRotations" => $previous_data["totalRotations"] + $new_rotations,
+	    "totalRotations" => $previous_data["totalRotations"] + $new_rotations,
         "totalDistance" => floor($previous_data["totalDistance"]+($new_rotations * $ROTATION_LENGTH)),
         "currentSpeed" => round($current_speed, 2),
         "currentSpeedKm" => round($current_speed * 3.6, 2),
@@ -38,7 +38,7 @@ function save_new_data(){
     );
 
     $current_data["topSpeed"] = $previous_data["topSpeed"] < $current_data["currentSpeed"] ? $current_data["currentSpeed"] : $previous_data["topSpeed"];
-    $current_data["topSpeedKm"] = $current_data["topSpeed"] * 3.6;    
+    $current_data["topSpeedKm"] = round($current_data["topSpeed"] * 3.6, 2);    
 
     file_put_contents('current_data.json', json_encode($current_data));
     // Todo: save into CSV for logging
