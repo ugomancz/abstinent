@@ -36,7 +36,7 @@ function save_new_data(){
 
 function update_from_git() {
     if ($_SERVER['X_GITLAB_TOKEN'] == $GITLAB_TOKEN){
-        exec("git pull");
+        shell_exec('touch /srv/var/pls-update-git-abstinent');
         http_response_code(201);
         exit;
     }
