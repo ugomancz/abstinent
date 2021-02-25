@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-    if (isset($_GET["api_key"])) {
+    if (isset($_GET["apiKey"])) {
         if ($_GET["apiKey"] == $ABSTINENT_API_KEY) {
             save_new_data();
         } else {
