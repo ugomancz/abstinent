@@ -13,9 +13,7 @@ $SENSOR_TOKEN = "";
 */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    print_r($_POST);
-    print_r($_SERVER);
-    if (isset($_SERVER['X_GITLAB_TOKEN'])){
+    if (isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
         update_from_git();
     } else {
         // todo: check if there is some other token
@@ -32,7 +30,7 @@ function save_new_data(){
     // Todo: check auth token
     // Todo: save into CSV
     file_put_contents('current_data.json', $_POST);
-    echo '{"currentData":'.file_get_contents('file.txt').'}';
+    echo '{"currentData:"'.file_get_contents('file.txt').'}';
     http_response_code(201);
 }
 
