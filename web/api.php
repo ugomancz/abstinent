@@ -35,10 +35,15 @@ function save_new_data(){
         "currentSpeed" => round($current_speed, 2),
         "currentSpeedKm" => round($current_speed * 3.6, 2),
         "currentTimestamp" => time(),
+        "topSpeed" => $previous_data["topSpeed"],
+        "topSpeedKm" => $previous_data["topSpeedKm"],
     );
 
-    $current_data["topSpeed"] = $previous_data["topSpeed"] < $current_data["currentSpeed"] ? $current_data["currentSpeed"] : $previous_data["topSpeed"];
-    $current_data["topSpeedKm"] = round($current_data["topSpeed"] * 3.6, 2);    
+    if ($previous_data["topSpeed"] < $current_data["currentSpeed"]) { //we have a new record boys!
+        $current_data["topSpeed"] = round($current_speed, 2);
+        $current_data["topSpeedKm"] = round($current_speed * 3.6, 2);    
+        $current_data["topSpeedTimestamp"] = time();
+    }
 
     file_put_contents('current_data.json', json_encode($current_data));
     // Todo: save into CSV for logging

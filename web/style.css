@@ -8,3 +8,6 @@ table {
   align-self: center;
   margin: 0px auto;
 }
+#topSpeedTimestamp {
+  color: darkgray;
+}
