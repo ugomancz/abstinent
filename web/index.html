@@ -56,7 +56,7 @@
             document.getElementById("totalDistance").innerHTML = res.totalDistance;
             document.getElementById("topSpeed").innerHTML = res.topSpeed;
             document.getElementById("topSpeedKm").innerHTML = res.topSpeedKm;
-            document.getElementById("topSpeedTimestamp").innerHTML = "["+new Date(res.topSpeedTimestamp * 1000).toISOString().slice(0, 19).replace('T', ' ')+"]";
+            document.getElementById("topSpeedTimestamp").innerHTML = "["+new Date((res.topSpeedTimestamp+3600) * 1000).toISOString().slice(0, 19).replace('T', ' ')+"]";
             document.getElementById("currentSpeed").innerHTML = res.currentSpeed;
             document.getElementById("currentSpeedKm").innerHTML = res.currentSpeedKm;
         });
