@@ -9,13 +9,6 @@
 </head>
 <html>
 
-<head>
-    <title>Abstinent stats</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
 <body>
     <h1><img src="images/cheddar.png" width="45" height="45" /></a> Abstinent
         stats &lt;3&nbsp;<img src="images/cheddar.png" width="45" height="45" /></a></h1>
@@ -29,11 +22,15 @@
             </tr>
             <tr>
                 <td><strong>Top speed:&nbsp;</strong></td>
-                <td><strong><span id="topSpeed">%TOP_SPEED%</span> m/s</strong> (<span id="topSpeedKm">%TOP_SPEED_KM%</span> km/h) <span id="topSpeedTimestamp">[%TOP_SPEED_TIMESTAMP%]</span></td>
+                <td><strong><span id="topSpeed">%TOP_SPEED%</span> m/s</strong> (<span id="topSpeedKm">%TOP_SPEED_KM%</span> km/h) <span id="topSpeedDatetime">[%TOP_SPEED_DATETIME%]</span></td>
             </tr>
             <tr>
                 <td><strong>Current speed:&nbsp;</strong></td>
                 <td><strong><span id="currentSpeed">%CURRENT_SPEED%</span> m/s</strong> (<span id="currentSpeedKm">%CURRENT_SPEED_KM%</span> km/h)</td>
+            </tr>
+            <tr>
+                <td><strong>Last run:&nbsp;</strong></td>
+               <td><strong><span id="lastRunDatetime">%LAST_RUN_DATETIME</span></strong></td>
             </tr>
         </tbody>
     </table>
@@ -48,6 +45,9 @@
 
 
 <script>
+    function timestampToPrettyDate(timestamp){
+        return new Date((timestamp+3600) * 1000).toISOString().slice(0, 19).replace('T', ' ');
+    }
     function update_stats(){
         fetch('current_data.json')
         .then (res => res.json())
@@ -56,9 +56,10 @@
             document.getElementById("totalDistance").innerHTML = res.totalDistance;
             document.getElementById("topSpeed").innerHTML = res.topSpeed;
             document.getElementById("topSpeedKm").innerHTML = res.topSpeedKm;
-            document.getElementById("topSpeedTimestamp").innerHTML = "["+new Date((res.topSpeedTimestamp+3600) * 1000).toISOString().slice(0, 19).replace('T', ' ')+"]";
+            document.getElementById("topSpeedDatetime").innerHTML = "["+timestampToPrettyDate(res.topSpeedTimestamp)+"]";
             document.getElementById("currentSpeed").innerHTML = res.currentSpeed;
             document.getElementById("currentSpeedKm").innerHTML = res.currentSpeedKm;
+            document.getElementById("lastRunDatetime").innerHTML = timestampToPrettyDate(res.currentTimestamp);
         });
     }
     update_stats();
