@@ -37,7 +37,7 @@ function save_new_data(){
         "currentTimestamp" => time(),
         "topSpeed" => $previous_data["topSpeed"],
         "topSpeedKm" => $previous_data["topSpeedKm"], 
-        "topSpeedTimestamp" => $previous_data["topSpeedTimestamp"];
+        "topSpeedTimestamp" => $previous_data["topSpeedTimestamp"],
     );
 
     if ($previous_data["topSpeed"] < $current_data["currentSpeed"]) { //we have a new record boys!
