@@ -1,66 +1,121 @@
-
 <html>
 
 <head>
     <title>Abstinent stats</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
+    <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<html>
 
 <body>
-    <h1><img src="images/cheddar.png" width="45" height="45" /></a> Abstinent
-        stats &lt;3&nbsp;<img src="images/cheddar.png" width="45" height="45" /></a></h1>
-    <p>Do you find yourself wondering how much has Abstinent been running lately?</p>
-    <p>Well then you've come to the right page!</p>
-    <table class="editorDemoTable">
-        <tbody>
-            <tr>
-                <td><strong>Distance ran so far:&nbsp;</strong></td>
-                <td><strong><span id="totalDistance">%TOTAL_DISTANCE%</span> m</strong></td>
-            </tr>
-            <tr>
-                <td><strong>Top speed:&nbsp;</strong></td>
-                <td><strong><span id="topSpeed">%TOP_SPEED%</span> m/s</strong> (<span id="topSpeedKm">%TOP_SPEED_KM%</span> km/h) <span id="topSpeedDatetime">[%TOP_SPEED_DATETIME%]</span></td>
-            </tr>
-            <tr>
-                <td><strong>Current speed:&nbsp;</strong></td>
-                <td><strong><span id="currentSpeed">%CURRENT_SPEED%</span> m/s</strong> (<span id="currentSpeedKm">%CURRENT_SPEED_KM%</span> km/h)</td>
-            </tr>
-            <tr>
-                <td><strong>Last run:&nbsp;</strong></td>
-               <td><strong><span id="lastRunDatetime">%LAST_RUN_DATETIME%</span></strong></td>
-            </tr>
-        </tbody>
-    </table>
-    <p>Food of the day: <strong>Banana chips</strong></p>
-    <p><img src="images/dinner.jpg" width="100" height="100" /></a></p>
-    <p>Wanna help get abstinent some fresh banana chips? <a href="https://www.paypal.com/paypalme/ugoman"
-            target="_blank" rel="noopener">Try here!</a></p>
-    <p><img src="images/business.jpg" width="100" height="100" /></a></p>
-    <p>Anything broken? Let us know, we'll try to fix it.</p>
-    <p><img src="images/repair.png" width="100" height="100" /></a></p>
+    <div class="header">
+        <img src="images/cheddar.png" alt="logod" />
+        <div class="title">
+            <h1>Abstinentův běh</h1>
+        </div>
+    </div>
+    <div class="upper-body-grid">
+        <div class="upper-body-grid-left">
+            <div class="text">
+                <p>Zajímá Vás kolik toho dneska Abstinent uběhl? Jak si udržuje svoji štíhlou postavu a co musíte udělat
+                    pro to, aby jste byli jako on?</p>
+                <p>Pak jste tady správně!</p>
+                <table class="editorDemoTable">
+                    <tbody>
+                        <tr>
+                            <td><strong>Celková uběhnutá vzdálenost:&nbsp;</strong></td>
+                            <td><strong><span id="totalDistance">%TOTAL_DISTANCE%</span> m</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maximální rychlost:&nbsp;</strong></td>
+                            <td><strong><span id="topSpeed">%TOP_SPEED%</span> m/s</strong> (<span
+                                    id="topSpeedKm">%TOP_SPEED_KM%</span> km/h) <span
+                                    id="topSpeedDatetime">[%TOP_SPEED_DATETIME%]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Současná rychlost:&nbsp;</strong></td>
+                            <td><strong><span id="currentSpeed">%CURRENT_SPEED%</span> m/s</strong> (<span
+                                    id="currentSpeedKm">%CURRENT_SPEED_KM%</span> km/h)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Naposledy běžel:&nbsp;</strong></td>
+                            <td><strong><span id="lastRunDatetime">%LAST_RUN_DATETIME%</span></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Jídlo dne: <strong>Sušené banány</strong></p>
+            </div>
+        </div>
+        <div class="upper-body-grid-right">
+            <iframe src="https://player.twitch.tv/?channel=ugomancz&parent=abstinent.fun" frameborder="0"
+                allowfullscreen="true" scrolling="no" height="504" width="896"></iframe>
+        </div>
+    </div>
+    <div class="lower-body-grid">
+        <div class="lower-body-grid-left">
+            <h3>Kde se vzal, tu se vzal, Abstinent na lince stál</h3>
+            <p>Abstinenta jsme poprvé zahlédli 14. září 2020 kolem poledne.</p>
+            <p>Zrovna jsem vstal, šel si dělat snídani a on si vesele pobíhal po kuchyňské lince a hledal něco k snědku.
+                Chvíli jsem si myslel, že se mi to jenom zdá, ale hned co jsem se vzpamatoval, jsem se rozhodl ho
+                chytit. Prvních pár hodin zůstal v půllitru, byl jsem zrovna na cestě do školy a neměl čas to řešit, ale
+                ještě odpoledne toho dne jsme dospěli k rozhodnutí, že si ho necháme a dále trávil svůj čas v terárku po
+                hadovi.</p>
+            <p>Po pár týdnech se nám povedlo sehnat vlastní klec, protože se měl had brzo vrátit a asi by si moc
+                nerozuměli. Klec se mu určitě líbila… teda, nestěžoval si, jen to vypadalo, že se docela nudí, takže
+                jsme mu pořídili kolo. Věděli jste, že se povedlo provést experiment, kde myši ve volné přírodě
+                dobrovolně běhaly v kolech nastražených vědci? Ano, myši běhaní v kole skutečně baví a u Abstinenta tomu
+                není jinak.</p>
+            <p>No a od momentu kdy bylo kolo už chyběl jenom jeden dárek k Vánocům a zrodila se tahle myšlenka.</p>
+        </div>
+        <div class="lower-body-grid-right">
+            <h3>Jak tohle všechno funguje?</h3>
+            <p>Začíná to měřením otáček kola. To se realizuje pomocí NodeMCU ESP8266 mikrokontroleru s KY-003
+                magnetickým senzorem a magnetu přilepeného přímo na kole. Pokaždé co senzor detekuje magnet, započítá se
+                jedna otáčka.</p>
+            <p>Počet otáček se každé dvě vteřiny odešle na web pomocí http requestu, na webu se php skript stará o
+                výpočet všech ostatních hodnot z počtu nových otáček. No a pak už tady máme jen frontend, jednoduchou
+                html webovou stránku, kde skript aktualizuje data.</p>
+            <p>Co se livestreamu týče, zatím je realizován starým telefonem skrz twitch. Uvidíme jak dobře to bude
+                fungovat.</p>
+        </div>
+    </div>
+
+    <div class="footer-grid">
+        <div class="footer-grid-left">
+            <a><img src="images/business.jpg" width="100" height="100" /></a>
+            <div class="gift-text">Chcete Abstinentovi přispět na pár sušených banánů nebo přispět nám na pivo, ať se
+                nám lépe programuje? <a href="https://www.paypal.com/paypalme/ugoman" rel="noopener">Můžete třeba
+                    takto!</a></p>
+            </div>
+        </div>
+        <div class="footer-grid-right">
+            <a><img src="images/repair.png" width="100" height="100" /></a>
+            <div class="fix-text">
+                Něco rozbité? Ozvěte se na twitter <a href="https://twitter.com/ondrakostik"
+                    rel="noopener">@ondrakostik</a>, zkusíme to opravit.</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 
 <script>
-    function timestampToPrettyDate(timestamp){
-        return new Date((timestamp+3600) * 1000).toISOString().slice(0, 19).replace('T', ' ');
+    function timestampToPrettyDate(timestamp) {
+        return new Date((timestamp + 3600) * 1000).toISOString().slice(0, 19).replace('T', ' ');
     }
-    function update_stats(){
-        fetch('current_data.json?no-cache='+(new Date().getTime()))
-        .then (res => res.json())
-        .then(res => {
-            console.log(res);
-            document.getElementById("totalDistance").innerHTML = res.totalDistance;
-            document.getElementById("topSpeed").innerHTML = res.topSpeed;
-            document.getElementById("topSpeedKm").innerHTML = res.topSpeedKm;
-            document.getElementById("topSpeedDatetime").innerHTML = "["+timestampToPrettyDate(res.topSpeedTimestamp)+"]";
-            document.getElementById("currentSpeed").innerHTML = res.currentSpeed;
-            document.getElementById("currentSpeedKm").innerHTML = res.currentSpeedKm;
-            document.getElementById("lastRunDatetime").innerHTML = timestampToPrettyDate(res.currentTimestamp);
-        });
+    function update_stats() {
+        fetch('current_data.json?no-cache=' + (new Date().getTime()))
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                document.getElementById("totalDistance").innerHTML = res.totalDistance;
+                document.getElementById("topSpeed").innerHTML = res.topSpeed;
+                document.getElementById("topSpeedKm").innerHTML = res.topSpeedKm;
+                document.getElementById("topSpeedDatetime").innerHTML = "[" + timestampToPrettyDate(res.topSpeedTimestamp) + "]";
+                document.getElementById("currentSpeed").innerHTML = res.currentSpeed;
+                document.getElementById("currentSpeedKm").innerHTML = res.currentSpeedKm;
+                document.getElementById("lastRunDatetime").innerHTML = timestampToPrettyDate(res.currentTimestamp);
+            });
     }
     update_stats();
     setInterval(function () {
