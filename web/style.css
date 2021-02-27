@@ -158,3 +158,28 @@ a:visited {
     font-size:14px;
   }
 }
+
+@media (pointer:none), (pointer:coarse) and (min-width: 900px) {
+  .upper-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .lower-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .upper-body-grid-right {
+    min-height: 600px;
+  }
+  .footer-grid {
+    bottom: 0;
+    grid-template-columns: 1fr;
+  }
+  .table {
+    width: "device-width";
+  }
+  .title h1 {
+    font-size:24px;
+  }
+  html {
+    font-size:14px;
+  }
+}
