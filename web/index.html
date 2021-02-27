@@ -49,7 +49,17 @@
         </div>
         <div class="upper-body-grid-right">
             <iframe src="https://player.twitch.tv/?channel=ugomancz&parent=abstinent.fun" frameborder="0"
-                allowfullscreen="true" scrolling="no" height="504" width="896"></iframe>
+                allowfullscreen="true" scrolling="no"></iframe>
+
+            <script>
+                // Selecting the iframe element
+                var iframe = document.getElementById("myIframe");
+
+                // Adjusting the iframe height onload event
+                iframe.onload = function () {
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+                }
+            </script>
         </div>
     </div>
     <div class="lower-body-grid">
@@ -64,7 +74,7 @@
             <p>Po pár týdnech se nám povedlo sehnat vlastní klec, protože se měl had brzo vrátit a asi by si moc
                 nerozuměli. Klec se mu určitě líbila… teda, nestěžoval si, jen to vypadalo, že se docela nudí, takže
                 jsme mu pořídili kolo. Věděli jste, že se povedlo provést experiment, kde myši ve volné přírodě
-                dobrovolně běhaly v kolech nastražených vědci? Ano, myši běhaní v kole skutečně baví a u Abstinenta tomu
+                dobrovolně běhaly v kolech nastražených vědci? Ano, myši běhání v kole skutečně baví a u Abstinenta tomu
                 není jinak.</p>
             <p>No a od momentu kdy bylo kolo už chyběl jenom jeden dárek k Vánocům a zrodila se tahle myšlenka.</p>
         </div>
