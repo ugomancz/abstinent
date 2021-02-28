@@ -103,9 +103,15 @@ a:visited {
   float: left;
 }
 
-@media screen and (min-width: 1100px){
+@media screen and (min-width: 1500px){
   .upper-body-grid-right {
-    min-height: 600px;
+    min-height: 520px;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1500px){
+  .upper-body-grid-right {
+    min-height: 350px;
   }
 }
 
