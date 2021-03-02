@@ -113,4 +113,11 @@ table {
     float: none;
     width: 100%;
   }
+  
+  .upper-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .lower-body-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-
     if (isset($_GET["apiKey"])) {
         if ($_GET["apiKey"] == $ABSTINENT_API_KEY) {
             save_new_data();
@@ -23,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } 
 
 function save_new_data(){
+    require("database.php");
     $ROTATION_LENGTH = 0.39269908;
     $previous_data = json_decode(file_get_contents('current_data.json'), true);
 
@@ -47,7 +47,9 @@ function save_new_data(){
     }
 
     file_put_contents('current_data.json', json_encode($current_data));
-    // Todo: save into CSV for logging
+   
+    $query = 'INSERT INTO stats(rotation) VALUES (:rotation)';
+    run_query($query, ["rotation" => $new_rotations]);
     http_response_code(201);
 }
 
