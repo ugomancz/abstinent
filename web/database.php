@@ -1,8 +1,8 @@
 <?php
 
 $host = "localhost";
-$user = "Lo3HvrJMJ1nfGMMt";
-$password = "pDDh0mCLWv2wxXCS";
+$user = "abstinent";
+$password = "Lo3HvrJMJ1nfGMMt";
 $dbname = "abstinent";
 $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4;collation=utf8mb4_unicode_ci";
 $options = [
