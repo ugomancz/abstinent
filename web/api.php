@@ -48,8 +48,8 @@ function save_new_data(){
 
     file_put_contents('current_data.json', json_encode($current_data));
    
-    $query = 'INSERT INTO stats(rotation) VALUES (:rotation)';
-    run_query($query, ["rotation" => $new_rotations]);
+    $query = 'INSERT INTO stats(rotations) VALUES (:rotations)';
+    run_query($query, ["rotations" => $new_rotations]);
     http_response_code(201);
 }
 
