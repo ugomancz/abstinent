@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } 
 
 function save_new_data(){
-    require("database.php");
+
     $ROTATION_LENGTH = 0.39269908;
     $previous_data = json_decode(file_get_contents('current_data.json'), true);
 
@@ -46,10 +46,12 @@ function save_new_data(){
         $current_data["topSpeedTimestamp"] = time();
     }
 
-    file_put_contents('current_data.json', json_encode($current_data));
-   
-    $query = 'INSERT INTO stats(rotations) VALUES (:rotations)';
-    run_query($query, ["rotations" => $new_rotations]);
+    file_put_contents('current_data.json', json_encode($current_data)); 
+	
+    require("database.php");
+    $pdo = connect();
+    $query = 'INSERT INTO stats (rotations) VALUES (:rotations)';
+    fetch_query($pdo, $query, ["rotations" => $new_rotations]);
     http_response_code(201);
 }
 
