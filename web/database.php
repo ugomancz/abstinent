@@ -1,6 +1,6 @@
 <?php
 function connect() {
-  $host = "localhost";
+  $host = "89.221.222.94:3333";
   $user = "abstinent";
   $password = "Lo3HvrJMJ1nfGMMt";
   $dbname = "abstinent";

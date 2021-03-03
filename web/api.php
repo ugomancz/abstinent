@@ -18,9 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             http_response_code(401);
         }
+    } else {
+        test_db();
     }
 } 
 
+function test_db(){
+    require("database.php");
+    $pdo = connect();
+    $query = 'SELECT count(rotations) as "rotations", HOUR(timestamp) as "hour" FROM stats GROUP BY HOUR(timestamp)';
+    $result = fetch_query($pdo, $query);
+    foreach($result as $hour) {
+        echo "Hodina: ".$hour['hour']."; metrů: ".round($hour['rotations']*0.3926990, 2).". <br>";
+    }
+}
 function save_new_data(){
 
     $ROTATION_LENGTH = 0.39269908;
