@@ -3,7 +3,7 @@ $GITLAB_API_KEY= "0183c450e36331faa7cfd704006e0f34";
 $ABSTINENT_API_KEY = "aac69111be3000c6f7608a1924b6f460";
 
 // just auto update test
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_SERVER['HTTP_X_GITLAB_EVENT']) && $_SERVER['HTTP_X_GITLAB_EVENT'] === 'Push Hook') {
     if (isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
         if ($_SERVER['HTTP_X_GITLAB_TOKEN'] == $GITLAB_API_KEY){
             update_from_git();
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             http_response_code(401);
         }
     }
-} else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+} else {
     if (isset($_GET["apiKey"])) {
         if ($_GET["apiKey"] == $ABSTINENT_API_KEY) {
             save_new_data();
