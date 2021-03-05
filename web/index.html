@@ -45,21 +45,37 @@
                     </tbody>
                 </table>
                 <p>Jídlo dne: <strong>Sušené banány</strong></p>
-                <div>
-                    <h2>Hledá se telefon!</h2>
+                <div class="phone">
+                    <h3>Hledá se telefon!</h3>
                     <p>Bohužel telefon, který nám zajišťoval stream se po cca týdnu rozbil a nedá se dál používat.
-                        Dočasně jsme ho nahradili našimi vlastními telefony, ale asi je zřejmé, proč to není nejlepší řešení. Pokud
-                        by se tady našel někdo, kdo má doma starší telefon a je ochotný jej dlouhodobě zapůjčit, byli bychom
+                        Dočasně jsme ho nahradili našimi vlastními telefony, ale asi je zřejmé, proč to není nejlepší
+                        řešení. Pokud
+                        by se tady našel někdo, kdo má doma starší telefon a je ochotný jej dlouhodobě zapůjčit, byli
+                        bychom
                         moc vděční. Stačí, když bude zvládat připojení na wifi a nahrávat video obstojné kvality.</p>
                     <p>Najde-li se mezi vámi někdo takový, ozvěte se na twitter <a
                             href="https://twitter.com/ondrakostik" rel="noopener">@ondrakostik</a>, messenger nebo třeba
-                        mail ondrakostik@gmail.com.</p>
+                        mail ondrakostik@gmail.com. Děkujeme.</p>
                 </div>
             </div>
         </div>
         <div class="upper-body-grid-right">
-            <iframe src="https://player.twitch.tv/?channel=ugomancz&parent=abstinent.fun" frameborder="0"
-                allowfullscreen="true" scrolling="no" height="100%" width="100%"></iframe>
+            <!-- Add a placeholder for the Twitch embed -->
+            <div id="twitch-embed"></div>
+
+            <!-- Load the Twitch embed script -->
+            <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+            <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+            <script type="text/javascript">
+                new Twitch.Embed("twitch-embed", {
+                    width: "100%",
+                    height: "100%",
+                    channel: "ugomancz",
+                    muted: true,
+                    autoplay: true
+                });
+            </script>
         </div>
     </div>
     <div class="lower-body-grid">

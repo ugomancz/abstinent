@@ -25,6 +25,12 @@ body {
   padding: 30px;
 }
 
+.phone {
+  background-color: #383838;
+  padding: 10px;
+  text-align: center;
+}
+
 .upper-body-grid-left {
   text-align: left;
 }
