@@ -11,64 +11,61 @@ asyncHTTPrequest request;
 unsigned short newRotations = 0;
 unsigned short previousSensorValue = NOT_DETECTED;
 bool firstZero = false;
+unsigned long lastPacketTime = 0;
 
 // returns true on rising edge
-bool signal_detected(int sensor_pin)
-{
-  int currentSensorValue = digitalRead(SENSOR);
-  bool result = ((currentSensorValue == DETECTED) and (previousSensorValue == NOT_DETECTED));
-  previousSensorValue = currentSensorValue;
-  return result;
+bool signalDetected(int sensor_pin) {
+    int currentSensorValue = digitalRead(SENSOR);
+    bool result = ((currentSensorValue == DETECTED) and (previousSensorValue == NOT_DETECTED));
+    previousSensorValue = currentSensorValue;
+    return result;
 }
 
-void performUpdate()
-{
-  if ((firstZero or newRotations > 0) and (request.readyState() == 0 || request.readyState() == 4)) {
+void performUpdate() {
+    if (WiFi.isConnected() and (firstZero or newRotations > 0)) {
+      unsigned long millisPassed = millis() - lastPacketTime;
 #ifdef DEBUG
-Serial.println(("request ready - new rotations: " + String(newRotations)).c_str());
+        Serial.printf("request ready - new rotations: %d; ms since last request: %d\n", newRotations, (int) millisPassed);
 #endif //DEBUG
-    if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" + String(newRotations)).c_str())) {
-      request.send();
-      firstZero = (newRotations == 0) ? false : true;
-      newRotations = 0;
+        if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" +
+                                 String(newRotations) + "&ms=" + String(millisPassed)).c_str())) {
+            request.send();
+            lastPacketTime = millis();
+            firstZero = (newRotations == 0) ? false : true;
+            newRotations = 0;
 #ifdef DEBUG
-      Serial.println("request sent");
+            Serial.println("request sent");
 #endif //DEBUG
-    }
+        }
 #ifdef DEBUG
-    else
+        else
     {
       Serial.println("request failed");
     }
 #endif //DEBUG
-  }
+    }
 }
 
-void setup()
-{
-  pinMode(SENSOR, INPUT);
+void setup() {
+    pinMode(SENSOR, INPUT);
 #ifdef DEBUG
-  Serial.begin(115200);
+    Serial.begin(115200);
   while (!Serial)
   {
   }
 #endif //DEBUG
-  WiFi.begin(SSID, PASSWORD);
-  while (!WiFi.isConnected())
-  {
-    delay(500);
-  }
+    WiFi.begin(SSID, PASSWORD);
+    while (!WiFi.isConnected()) {
+        delay(500);
+    }
 #ifdef DEBUG
-  Serial.println("wifi connected");
-  request.setDebug(true);
+    Serial.println("wifi connected");
 #endif //DEBUG
-  ticker.attach(SPEED_MEASUREMENT_PERIOD, performUpdate);
+    ticker.attach(SPEED_MEASUREMENT_PERIOD, performUpdate);
 }
 
-void loop()
-{
-  if (signal_detected(SENSOR))
-  {
-    newRotations++;
-  }
+void loop() {
+    if (signalDetected(SENSOR)) {
+        newRotations++;
+    }
 }
