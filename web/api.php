@@ -34,7 +34,7 @@ function test_db(){
 }
 function save_new_data(){
 
-    $ROTATION_LENGTH = 0.39269908;
+    $ROTATION_LENGTH = 0.4303982;
     $previous_data = json_decode(file_get_contents('current_data.json'), true);
 
     $new_rotations = $_GET["newRotations"];
