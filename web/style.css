@@ -140,7 +140,7 @@ a:visited {
 
 @media screen and (min-width: 1100px) and (max-width: 1500px) {
   .upper-body-grid-right {
-    min-height: 350px;
+    min-height: 450px;
   }
 }
 
@@ -149,6 +149,10 @@ a:visited {
     grid-template-columns: 1fr;
   }
   .lower-body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .middle-body-grid {
     grid-template-columns: 1fr;
   }
   .footer-grid {
