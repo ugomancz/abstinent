@@ -25,10 +25,10 @@ void performUpdate() {
     if (WiFi.isConnected() and (firstZero or newRotations > 0)) {
       unsigned long millisPassed = millis() - lastPacketTime;
 #ifdef DEBUG
-        Serial.printf("request ready - new rotations: %d; ms since last request: %d\n", newRotations, (int) millisPassed);
+        Serial.printf("request ready - new rotations: %f; ms since last request: %d\n", static_cast<double>(newRotations) / static_cast<double>(NUMBER_OF_MAGNETS), (int) millisPassed);
 #endif //DEBUG
         if (request.open("GET", ("http://abstinent.fun/api.php?apiKey=" + String(API_KEY) + "&newRotations=" +
-                                 String(newRotations) + "&ms=" + String(millisPassed)).c_str())) {
+                                 String(static_cast<double>(newRotations) / static_cast<double>(NUMBER_OF_MAGNETS)) + "&ms=" + String(millisPassed)).c_str())) {
             request.send();
             lastPacketTime = millis();
             firstZero = (newRotations == 0) ? false : true;
