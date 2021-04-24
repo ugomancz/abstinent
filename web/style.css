@@ -109,13 +109,17 @@ a:visited {
 .footer-grid {
   display: grid;
   background: #336d33;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 7.2fr 6fr 1fr;
+  grid-gap: 10px;
   padding: 10px;
 }
 
 .footer-grid-left img {
   float: left;
+}
+
+.counter {
+  -webkit-writing-mode: vertical-lr;
 }
 
 .gift-text {
