@@ -118,10 +118,6 @@ a:visited {
   float: left;
 }
 
-.counter {
-  -webkit-writing-mode: vertical-lr;
-}
-
 .gift-text {
   text-align: center;
   margin: 2%;
