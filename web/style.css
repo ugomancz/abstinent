@@ -132,8 +132,15 @@ a:visited {
   float: left;
 }
 
+iframe {
+  volume: silent;
+}
+
 @media screen and (min-width: 1500px) {
   .upper-body-grid-right {
+    background-color: #2f3f2f;
+    text-align: left;
+    padding: 30px;
     min-height: 520px;
   }
 }
